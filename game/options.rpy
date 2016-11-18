@@ -12,7 +12,7 @@
 ##
 ## The _() surrounding the string marks it as eligible for translation.
 
-define config.name = _("VisualEuphoria")
+define config.name = _("Moonlight")
 
 
 ## Determines if the title given above is shown on the main menu screen. Set
@@ -23,7 +23,7 @@ define gui.show_name = True
 
 ## The version of the game.
 
-define config.version = "1.0"
+define config.version = "0.0.1"
 
 
 ## Text that is placed on the game's about screen. To insert a blank line
@@ -201,5 +201,7 @@ init python:
 
 # define build.itch_project = "renpytom/test-project"
 
-    config.screen_width=1366
-    config.screen_height=768
+    config.screen_width=1920
+    config.screen_height=1080
+    
+    style.default.font = "Lato-Light.ttf"
