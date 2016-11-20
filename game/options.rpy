@@ -205,3 +205,4 @@ init python:
     config.screen_height=1080
     
     style.default.font = "Lato-Light.ttf"
+    style.say_label.font = "Lato-Medium.ttf"

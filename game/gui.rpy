@@ -58,7 +58,7 @@ define gui.interface_text_color = '#ffffff'
 define gui.default_font = "Lato-Light.ttf"
 
 ## The font used for character names.
-define gui.name_font = "Lato-Light.ttf"
+define gui.name_font = "Lato-Medium.ttf"
 
 ## The font used for out-of-game text.
 define gui.interface_font = "Lato-Light.ttf"
@@ -262,10 +262,10 @@ define gui.choice_spacing = 33
 define gui.navigation_spacing = 13
 
 ## Controls the amount of spacing between preferences.
-define gui.pref_spacing = 15
+define gui.pref_spacing = 5
 
 ## Controls the amount of spacing between preference buttons.
-define gui.pref_button_spacing = 0
+define gui.pref_button_spacing = 15
 
 ## The spacing between file page buttons.
 define gui.page_spacing = 0
@@ -306,7 +306,7 @@ define gui.frame_tile = False
 ## bars, scrollbars, and sliders.
 define gui.bar_size = 54
 define gui.scrollbar_size = 18
-define gui.slider_size = 45
+define gui.slider_size = 51
 
 ## True if bar images should be tiled. False if they should be linearly scaled.
 define gui.bar_tile = False
@@ -455,6 +455,8 @@ init python:
 
         ## Quick buttons.
         gui.quick_button_text_size = 30
+        
 
-
-
+init -1 python hide:
+    
+    config.window_title = "Moonlight"

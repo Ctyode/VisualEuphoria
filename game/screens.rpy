@@ -726,8 +726,27 @@ screen preferences():
 
         vbox:
 
-            hbox:
-                box_wrap True
+            vbox:
+                
+                vbox:
+                    style_prefix "slider"
+                    box_wrap True
+                    
+                    label _("Text Speed")
+                    bar value Preference("text speed")
+                    
+                    label _("Auto-Forward Time")
+                    bar value Preference("auto-forward time")
+
+                    if config.has_music:
+                        label _("Music Volume")
+                        bar value Preference("music volume")
+
+                    if config.has_sound:
+                        label _("Sound Volume")
+                        bar value Preference("sound volume")
+                
+                null height (2 * gui.pref_spacing)
 
                 if renpy.variant("pc"):
 
@@ -737,73 +756,15 @@ screen preferences():
                         textbutton _("Window") action Preference("display", "window")
                         textbutton _("Fullscreen") action Preference("display", "fullscreen")
 
-                vbox:
-                    style_prefix "radio"
-                    label _("Rollback Side")
-                    textbutton _("Disable") action Preference("rollback side", "disable")
-                    textbutton _("Left") action Preference("rollback side", "left")
-                    textbutton _("Right") action Preference("rollback side", "right")
+                    vbox:
+                        style_prefix "check"
+                        label _("Skip")
+                        textbutton _("Unseen Text") action Preference("skip", "toggle")
+                        textbutton _("After Choices") action Preference("after choices", "toggle")
+                        textbutton _("Transitions") action InvertSelected(Preference("transitions", "toggle"))
 
-                vbox:
-                    style_prefix "check"
-                    label _("Skip")
-                    textbutton _("Unseen Text") action Preference("skip", "toggle")
-                    textbutton _("After Choices") action Preference("after choices", "toggle")
-                    textbutton _("Transitions") action InvertSelected(Preference("transitions", "toggle"))
-
-                ## Additional vboxes of type "radio_pref" or "check_pref" can be
-                ## added here, to add additional creator-defined preferences.
-
-            null height (4 * gui.pref_spacing)
-
-            hbox:
-                style_prefix "slider"
-                box_wrap True
-
-                vbox:
-
-                    label _("Text Speed")
-
-                    bar value Preference("text speed")
-
-                    label _("Auto-Forward Time")
-
-                    bar value Preference("auto-forward time")
-
-                vbox:
-
-                    if config.has_music:
-                        label _("Music Volume")
-
-                        hbox:
-                            bar value Preference("music volume")
-
-                    if config.has_sound:
-
-                        label _("Sound Volume")
-
-                        hbox:
-                            bar value Preference("sound volume")
-
-                            if config.sample_sound:
-                                textbutton _("Test") action Play("sound", config.sample_sound)
-
-
-                    if config.has_voice:
-                        label _("Voice Volume")
-
-                        hbox:
-                            bar value Preference("voice volume")
-
-                            if config.sample_voice:
-                                textbutton _("Test") action Play("voice", config.sample_voice)
-
-                    if config.has_music or config.has_sound or config.has_voice:
-                        null height gui.pref_spacing
-
-                        textbutton _("Mute All"):
-                            action Preference("all mute", "toggle")
-                            style "mute_all_button"
+                    ## Additional vboxes of type "radio_pref" or "check_pref" can be
+                    ## added here, to add additional creator-defined preferences.
 
 
 style pref_label is gui_label
@@ -829,18 +790,16 @@ style slider_button is gui_button
 style slider_button_text is gui_button_text
 style slider_pref_vbox is pref_vbox
 
-style mute_all_button is check_button
-style mute_all_button_text is check_button_text
-
 style pref_label:
     top_margin gui.pref_spacing
-    bottom_margin 3
+    bottom_margin 10
 
 style pref_label_text:
     yalign 1.0
 
 style pref_vbox:
-    xsize 338
+    xsize 430
+    xpos 880
 
 style radio_vbox:
     spacing gui.pref_button_spacing
@@ -863,19 +822,18 @@ style check_button_text:
     properties gui.button_text_properties("check_button")
 
 style slider_slider:
-    xsize 525
+    xsize 430
 
 style slider_button:
     properties gui.button_properties("slider_button")
-    yalign 0.5
-    left_margin 15
+    yalign 10
 
 style slider_button_text:
     properties gui.button_text_properties("slider_button")
 
 style slider_vbox:
-    xsize 675
-
+    xsize 430
+    xpos 880
 
 ## History screen ##############################################################
 ##
