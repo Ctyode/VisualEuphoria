@@ -314,7 +314,7 @@ screen navigation():
 
         textbutton _("Load") action ShowMenu("load")
 
-        textbutton _("Preferences") action ShowMenu("preferences")
+        textbutton _("Settings") action ShowMenu("preferences")
 
         if _in_replay:
 
@@ -521,7 +521,7 @@ style game_menu_side:
     spacing 15
 
 style game_menu_label:
-    xpos 75
+    xpos 1360
     ysize 180
 
 style game_menu_label_text:
@@ -722,7 +722,7 @@ screen preferences():
     else:
         $ cols = 4
 
-    use game_menu(_("Preferences"), scroll="viewport"):
+    use game_menu(_("Settings"), scroll="viewport"):
 
         vbox:
 
@@ -732,12 +732,16 @@ screen preferences():
                     style_prefix "slider"
                     box_wrap True
                     
+                    label _("Text"):
+                        text_size 66
                     label _("Text Speed")
                     bar value Preference("text speed")
                     
                     label _("Auto-Forward Time")
                     bar value Preference("auto-forward time")
 
+                    label _("Sound"):
+                        text_size 66
                     if config.has_music:
                         label _("Music Volume")
                         bar value Preference("music volume")
@@ -749,23 +753,65 @@ screen preferences():
                 null height (2 * gui.pref_spacing)
 
                 if renpy.variant("pc"):
-
+                        
                     vbox:
                         style_prefix "radio"
-                        label _("Display")
-                        textbutton _("Window") action Preference("display", "window")
-                        textbutton _("Fullscreen") action Preference("display", "fullscreen")
-
-                    vbox:
-                        style_prefix "check"
-                        label _("Skip")
-                        textbutton _("Unseen Text") action Preference("skip", "toggle")
-                        textbutton _("After Choices") action Preference("after choices", "toggle")
-                        textbutton _("Transitions") action InvertSelected(Preference("transitions", "toggle"))
-
-                    ## Additional vboxes of type "radio_pref" or "check_pref" can be
-                    ## added here, to add additional creator-defined preferences.
-
+                        vbox:
+                            label _("Display"):
+                                text_size 66
+                            if renpy.game.preferences.fullscreen:
+                                hbox:
+                                    label _("Window"):
+                                        text_size 40
+                                    spacing 250
+                                    imagebutton idle "gui/button/radio_foreground.png" ypos 20 action Preference("display", "window")
+                                hbox:
+                                    label _("Fullscreen"):
+                                        text_size 40
+                                    spacing 223
+                                    imagebutton idle "gui/button/radio_selected_foreground.png" ypos 20 action Preference("display", "fullscreen")
+                            else:
+                                hbox:
+                                    label _("Window"):
+                                        text_size 40
+                                    spacing 250
+                                    imagebutton idle "gui/button/radio_selected_foreground.png" ypos 15 action Preference("display", "window")
+                                hbox:
+                                    label _("Fullscreen"):
+                                        text_size 40
+                                    spacing 223
+                                    imagebutton idle "gui/button/radio_foreground.png" ypos 15 action Preference("display", "fullscreen")
+                                    
+                        vbox:
+                            vbox:
+                                xpos 0
+                                label _("Skip"):
+                                    text_size 66
+                                if renpy.game.preferences.skip_unseen:
+                                    hbox:    
+                                        label _("Unseen text"):
+                                            text_size 40
+                                        spacing 190
+                                        imagebutton idle "gui/button/check_selected_foreground.png" ypos 10 action Preference("skip", "toggle")
+                                else:
+                                    hbox:
+                                        label _("Unseen text"):
+                                            text_size 40
+                                        spacing 190
+                                        imagebutton idle "gui/button/check_foreground.png" ypos 10 action Preference("skip", "toggle")
+                                if renpy.game.preferences.skip_after_choices:
+                                    hbox:
+                                        label _("After Choices"):
+                                            text_size 40
+                                        spacing 163
+                                        imagebutton idle "gui/button/check_selected_foreground.png" ypos 10 action Preference("after choices", "toggle")
+                                else:
+                                     hbox:
+                                        label _("After Choices"):
+                                            text_size 40
+                                        spacing 163
+                                        imagebutton idle "gui/button/check_foreground.png" ypos 10 action Preference("after choices", "toggle")
+                                
 
 style pref_label is gui_label
 style pref_label_text is gui_label_text
@@ -799,14 +845,14 @@ style pref_label_text:
 
 style pref_vbox:
     xsize 430
-    xpos 880
+    xpos 440
 
-style radio_vbox:
-    spacing gui.pref_button_spacing
+#style radio_vbox:
+    #spacing gui.pref_button_spacing
 
 style radio_button:
     properties gui.button_properties("radio_button")
-    foreground "gui/button/check_[prefix_]foreground.png"
+    foreground "gui/button/radio_[prefix_]foreground.png"
 
 style radio_button_text:
     properties gui.button_text_properties("radio_button")
