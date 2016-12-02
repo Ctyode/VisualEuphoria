@@ -630,8 +630,8 @@ screen file_slots(title):
 
                 xalign 0.5
                 yalign 0.5
-
-                spacing gui.slot_spacing
+                xpos 1100
+                spacing -40
 
                 for i in range(gui.file_slot_cols * gui.file_slot_rows):
 
@@ -658,21 +658,18 @@ screen file_slots(title):
 
                 xalign 0.5
                 yalign 1.0
+                xpos 1100
 
                 spacing gui.page_spacing
-
-                textbutton _("<") action FilePagePrevious()
 
                 textbutton _("{#auto_page}A") action FilePage("auto")
 
                 textbutton _("{#quick_page}Q") action FilePage("quick")
 
-                # range(1, 10) gives the numbers from 1 to 9.
-                for page in range(1, 10):
+                # range(1, 8) gives the numbers from 1 to 7.
+                for page in range(1, 8):
                     textbutton "[page]" action FilePage(page)
-
-                textbutton _(">") action FilePageNext()
-
+                    
 
 style page_label is gui_label
 style page_label_text is gui_label_text
@@ -692,6 +689,7 @@ style page_label_text:
     text_align 0.5
     layout "subtitle"
     hover_color gui.hover_color
+    xpos 100
 
 style page_button:
     properties gui.button_properties("page_button")
@@ -757,7 +755,7 @@ screen preferences():
                     vbox:
                         style_prefix "radio"
                         vbox:
-                            label _("Display"):
+                            label _("Display"): #it's retarded
                                 text_size 66
                             if renpy.game.preferences.fullscreen:
                                 hbox:
