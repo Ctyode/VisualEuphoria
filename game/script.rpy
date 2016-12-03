@@ -1,7 +1,7 @@
 ﻿
-define girl = Character('Девочка')
-define inna = Character('Инна')
-define me = Character('Маргарита')
+define girl = Character('Девочка', color=(192, 78, 234, 255))
+define inna = Character('Инна', color=(192, 78, 234, 255))
+define me = Character('Маргарита', color=(234, 78, 78, 255))
 define ppoints = 0
 
 label start:
