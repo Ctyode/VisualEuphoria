@@ -619,6 +619,7 @@ screen file_slots(title):
                 key_events True
                 xalign 0.5
                 action page_name_value.Toggle()
+                text_size 22
 
                 input:
                     style "page_label_text"
@@ -666,8 +667,8 @@ screen file_slots(title):
 
                 textbutton _("{#quick_page}Q") action FilePage("quick")
 
-                # range(1, 8) gives the numbers from 1 to 7.
-                for page in range(1, 8):
+                # range(1, 7) gives the numbers from 1 to 6.
+                for page in range(1, 7):
                     textbutton "[page]" action FilePage(page)
                     
 
@@ -689,7 +690,7 @@ style page_label_text:
     text_align 0.5
     layout "subtitle"
     hover_color gui.hover_color
-    xpos 100
+    xpos 200
 
 style page_button:
     properties gui.button_properties("page_button")
@@ -999,7 +1000,7 @@ screen help():
 
 
 screen keyboard_help():
-
+    
     hbox:
         label _("Enter")
         text _("Advances dialogue and activates the interface.")
@@ -1111,14 +1112,14 @@ style help_button_text:
     properties gui.button_text_properties("help_button")
 
 style help_label:
-    xsize 375
+    xsize 100
     right_padding 30
 
 style help_label_text:
-    size gui.text_size
+    size 10
     xalign 1.0
     text_align 1.0
-
+    xsize 100
 
 
 ################################################################################
