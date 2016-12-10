@@ -218,7 +218,7 @@ define gui.choice_button_text_hover_color = "#ffffff"
 
 ## File Slot Buttons ###########################################################
 ##
-## A file slot button is a special kind of button. It contains a thumbnail
+## A file slot button is a special kind of button. It contains a thumbnail15
 ## image, and text describing the contents of the save slot. A save slot uses
 ## image files in gui/button, like the other kinds of buttons.
 
@@ -226,7 +226,7 @@ define gui.choice_button_text_hover_color = "#ffffff"
 define gui.slot_button_width = 390
 define gui.slot_button_height = 280
 define gui.slot_button_borders = Borders(15, 15, 15, 15)
-define gui.slot_button_text_size = 21
+define gui.slot_button_text_size = 25
 define gui.slot_button_text_xalign = 0.5
 define gui.slot_button_text_idle_color = gui.idle_small_color
 
@@ -268,7 +268,7 @@ define gui.pref_spacing = 5
 define gui.pref_button_spacing = 15
 
 ## The spacing between file page buttons.
-define gui.page_spacing = 0
+define gui.page_spacing = -5
 
 ## The spacing between file slots.
 define gui.slot_spacing = 15

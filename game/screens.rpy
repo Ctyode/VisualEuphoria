@@ -612,27 +612,14 @@ screen file_slots(title):
             ## buttons do.
             order_reverse True
 
-            # The page name, which can be edited by clicking on a button.
-            button:
-                style "page_label"
-
-                key_events True
-                xalign 0.5
-                action page_name_value.Toggle()
-                text_size 22
-
-                input:
-                    style "page_label_text"
-                    value page_name_value
-
             ## The grid of file slots.
             grid gui.file_slot_cols gui.file_slot_rows:
                 style_prefix "slot"
 
                 xalign 0.5
-                yalign 0.5
+                yalign -0.5
                 xpos 1100
-                spacing -40
+                spacing -10
 
                 for i in range(gui.file_slot_cols * gui.file_slot_rows):
 
@@ -645,7 +632,7 @@ screen file_slots(title):
 
                         add FileScreenshot(slot) xalign 0.5
 
-                        text FileTime(slot, format=_("{#file_time}%A, %B %d %Y, %H:%M"), empty=_("empty slot")):
+                        text FileTime(slot, format=_("{#file_time}%A, %d %B %Y, %H:%M"), empty=_("empty slot")):
                             style "slot_time_text"
 
                         text FileSaveName(slot):
@@ -690,8 +677,8 @@ style page_label_text:
     text_align 0.5
     layout "subtitle"
     hover_color gui.hover_color
-    xpos 200
-
+    xpos 250
+    
 style page_button:
     properties gui.button_properties("page_button")
 
