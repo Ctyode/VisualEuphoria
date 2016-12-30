@@ -41,6 +41,8 @@ label start:
                pass
     pass
 
+    scene zakat
+    
     hide normal_small_inna
     show smiling_small_inna
     

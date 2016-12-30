@@ -27,6 +27,11 @@ style gui_text:
     font gui.interface_font
     color gui.interface_text_color
     size gui.interface_text_size
+    
+style skip_gui_text:
+    font gui.interface_font
+    color gui.another_text_color
+    size gui.interface_text_size
 
 
 style button:
@@ -44,8 +49,7 @@ style label_text is gui_text:
 style prompt_text is gui_text:
     color gui.text_color
     size gui.interface_text_size
-
-
+    
 style bar:
     ysize gui.bar_size
     left_bar Frame("gui/bar/left.png", gui.bar_borders, tile=gui.bar_tile)
@@ -324,7 +328,7 @@ screen navigation():
 
             textbutton _("Main Menu") action MainMenu()
 
-        textbutton _("About") action ShowMenu("about")
+#        textbutton _("About") action ShowMenu("about")
 
         if renpy.variant("pc"):
 
@@ -542,39 +546,39 @@ style return_button:
 ## There's nothing special about this screen, and hence it also serves as an
 ## example of how to make a custom screen.
 
-screen about():
-
-    tag menu
+#screen about():
+#
+#    tag menu
 
     ## This use statement includes the game_menu screen inside this one. The
     ## vbox child is then included inside the viewport inside the game_menu
     ## screen.
-    use game_menu(_("About"), scroll="viewport"):
-
-        style_prefix "about"
-
-        vbox:
-
-            label "[config.name!t]"
-            text _("Version [config.version!t]\n")
-
-            ## gui.about is usually set in options.rpy.
-            if gui.about:
-                text "[gui.about!t]\n"
-
-            text _("Made with {a=https://www.renpy.org/}Ren'Py{/a} [renpy.version_only].\n\n[renpy.license!t]")
-
+#    use game_menu(_("About"), scroll="viewport"):
+#
+#        style_prefix "about"
+#
+#        vbox:
+#
+#            label "[config.name!t]"
+#            text _("Version [config.version!t]\n")
+#
+#            ## gui.about is usually set in options.rpy.
+#            if gui.about:
+#                text "[gui.about!t]\n"
+#
+#            text _("Made with {a=https://www.renpy.org/}Ren'Py{/a} [renpy.version_only].\n\n[renpy.license!t]")
+#
 
 ## This is redefined in options.rpy to add text to the about screen.
-define gui.about = ""
+#define gui.about = ""
 
 
-style about_label is gui_label
-style about_label_text is gui_label_text
-style about_text is gui_text
+#style about_label is gui_label
+#style about_label_text is gui_label_text
+#style about_text is gui_text
 
-style about_label_text:
-    size gui.label_text_size
+#style about_label_text:
+#    size gui.label_text_size
 
 
 ## Load and Save screens #######################################################
@@ -1169,6 +1173,7 @@ style confirm_frame:
 style confirm_prompt_text:
     text_align 0.5
     layout "subtitle"
+    color gui.dark_text_color
 
 style confirm_button:
     properties gui.button_properties("confirm_button")
@@ -1216,7 +1221,7 @@ transform delayed_blink(delay, cycle):
 
 
 style skip_frame is empty
-style skip_text is gui_text
+style skip_text is skip_gui_text
 style skip_triangle is skip_text
 
 style skip_frame:
