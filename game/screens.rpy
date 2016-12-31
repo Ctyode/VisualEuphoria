@@ -974,20 +974,15 @@ screen help():
         vbox:
             spacing 23
 
-            hbox:
+            #hbox:
 
-                textbutton _("Keyboard") action SetScreenVariable("device", "keyboard")
-                textbutton _("Mouse") action SetScreenVariable("device", "mouse")
-
-                if GamepadExists():
-                    textbutton _("Gamepad") action SetScreenVariable("device", "gamepad")
+                #textbutton _("Keyboard") action SetScreenVariable("device", "keyboard")
+                #textbutton _("Mouse") action SetScreenVariable("device", "mouse")
 
             if device == "keyboard":
                 use keyboard_help
-            elif device == "mouse":
-                use mouse_help
-            elif device == "gamepad":
-                use gamepad_help
+            #elif device == "mouse":
+            #    use mouse_help
 
 
 screen keyboard_help():
@@ -1000,9 +995,9 @@ screen keyboard_help():
         label _("Space")
         text _("Advances dialogue without selecting choices.")
 
-    hbox:
-        label _("Arrow Keys")
-        text _("Navigate the interface.")
+    #hbox:
+    #    label _("Arrow Keys")
+    #    text _("Navigate the interface.")
 
     hbox:
         label _("Escape")
@@ -1017,14 +1012,6 @@ screen keyboard_help():
         text _("Toggles dialogue skipping.")
 
     hbox:
-        label _("Page Up")
-        text _("Rolls back to earlier dialogue.")
-
-    hbox:
-        label _("Page Down")
-        text _("Rolls forward to later dialogue.")
-
-    hbox:
         label "H"
         text _("Hides the user interface.")
 
@@ -1032,61 +1019,28 @@ screen keyboard_help():
         label "S"
         text _("Takes a screenshot.")
 
-    hbox:
-        label "V"
-        text _("Toggles assistive {a=https://www.renpy.org/l/voicing}self-voicing{/a}.")
 
+#screen mouse_help():
 
-screen mouse_help():
+#    hbox:
+#        label _("Left Click")
+#        text _("Advances dialogue and activates the interface.")
 
-    hbox:
-        label _("Left Click")
-        text _("Advances dialogue and activates the interface.")
+#    hbox:
+#        label _("Middle Click")
+#        text _("Hides the user interface.")
 
-    hbox:
-        label _("Middle Click")
-        text _("Hides the user interface.")
+#    hbox:
+#        label _("Right Click")
+#        text _("Accesses the game menu.")
 
-    hbox:
-        label _("Right Click")
-        text _("Accesses the game menu.")
+#    hbox:
+#        label _("Mouse Wheel Up\nClick Rollback Side")
+#        text _("Rolls back to earlier dialogue.")
 
-    hbox:
-        label _("Mouse Wheel Up\nClick Rollback Side")
-        text _("Rolls back to earlier dialogue.")
-
-    hbox:
-        label _("Mouse Wheel Down")
-        text _("Rolls forward to later dialogue.")
-
-
-screen gamepad_help():
-
-    hbox:
-        label _("Right Trigger\nA/Bottom Button")
-        text _("Advance dialogue and activates the interface.")
-
-    hbox:
-        label ("Left Trigger\nLeft Shoulder")
-        text _("Roll back to earlier dialogue.")
-
-    hbox:
-        label _("Right Shoulder")
-        text _("Roll forward to later dialogue.")
-
-    hbox:
-        label _("D-Pad, Sticks")
-        text _("Navigate the interface.")
-
-    hbox:
-        label _("Start, Guide")
-        text _("Access the game menu.")
-
-    hbox:
-        label _("Y/Top Button")
-        text _("Hides the user interface.")
-
-    textbutton _("Calibrate") action GamepadCalibrate()
+#    hbox:
+#        label _("Mouse Wheel Down")
+#        text _("Rolls forward to later dialogue.")
 
 
 style help_button is gui_button
@@ -1097,20 +1051,27 @@ style help_text is gui_text
 
 style help_button:
     properties gui.button_properties("help_button")
-    xmargin 12
+    xmargin 15
+    xpos 800
 
 style help_button_text:
     properties gui.button_text_properties("help_button")
 
 style help_label:
-    xsize 100
-    right_padding 30
-
+    xsize 200
+    right_padding 20
+    
 style help_label_text:
-    size 10
-    xalign 1.0
-    text_align 1.0
-    xsize 100
+    size 34
+    xsize 200
+    color gui.hover_color
+    xpos 880
+        
+style help_text:
+    xpos 835
+    size 30
+    xsize 295
+    color gui.dark_text_color
 
 
 ################################################################################
