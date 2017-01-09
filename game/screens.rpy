@@ -381,7 +381,7 @@ screen main_menu():
         
     image "gui/line.png":
         xpos 708
-        ypos 135
+        ypos 119
 
         #text "[config.version]":
         #    style "main_menu_version"
@@ -401,10 +401,10 @@ style main_menu_frame:
 
 style main_menu_vbox:
     xalign 1.0
-    xoffset -855
+    xoffset -895
     xmaximum 1200
     yalign 1.0
-    yoffset -960
+    yoffset -970
 
 style main_menu_text:
     xalign 1.0
@@ -413,8 +413,8 @@ style main_menu_text:
     color gui.accent_color
 
 style main_menu_title:
-    size gui.title_text_size
-
+    size 63
+    font gui.lato_regular
 
 ## Game Menu screen ############################################################
 ##
@@ -485,9 +485,25 @@ screen game_menu(title, scroll=None):
         action Return()
 
     label title
+    
+    image "gui/line.png":
+        xpos 1325
+        ypos 119
 
     if main_menu:
         key "game_menu" action ShowMenu("main_menu")
+        
+    vbox:
+        text "[config.name!t]":
+            size 63
+            xpos 738
+            ypos 35
+            color gui.accent_color
+            font gui.lato_regular
+        
+    image "gui/line.png":
+        xpos 706
+        ypos 119
 
 
 style game_menu_outer_frame is empty
@@ -504,8 +520,8 @@ style return_button is navigation_button
 style return_button_text is navigation_button_text
 
 style game_menu_outer_frame:
-    bottom_padding 45
-    top_padding 180
+    bottom_padding 0 #Это заголовок меню
+    top_padding 150
 
     background "gui/overlay/game_menu.png"
 
@@ -529,12 +545,13 @@ style game_menu_side:
 
 style game_menu_label:
     xpos 1360
-    ysize 180
+    ysize 140
 
 style game_menu_label_text:
-    size gui.title_text_size
+    size 60
     color gui.accent_color
     yalign 0.5
+    font gui.lato_regular
 
 style return_button:
     xpos gui.navigation_xpos
@@ -610,7 +627,7 @@ screen load():
 screen file_slots(title):
 
     default page_name_value = FilePageNameInputValue()
-
+    
     use game_menu(title):
 
         fixed:
@@ -711,18 +728,24 @@ screen preferences():
     tag menu
     
     use game_menu(_("Settings"), scroll="viewport"):
-                
+    
         vbox:
-
+            
             vbox:
                                 
                 vbox:
-                                        
+                        
                     style_prefix "slider"
                     box_wrap True
                     
                     label _("Text"):
                         text_size 48
+                    
+                    null height 8
+                    image "gui/line.png":
+                        xpos 0
+                        
+                    null height 15
                     label _("Text Speed"):
                         text_size 28
                     bar value Preference("text speed")
@@ -733,6 +756,12 @@ screen preferences():
 
                     label _("Sound"):
                         text_size 48
+                    
+                    null height 8
+                    image "gui/line.png":
+                        xpos 0
+                        
+                    null height 15
                     if config.has_music:
                         label _("Music Volume"):
                             text_size 28
@@ -743,7 +772,7 @@ screen preferences():
                             text_size 28
                         bar value Preference("sound volume")
                 
-                null height (2 * gui.pref_spacing)
+                null height 15
 
                 if renpy.variant("pc"):
                         
@@ -752,58 +781,75 @@ screen preferences():
                         vbox:
                             label _("Display"): #it's retarded
                                 text_size 48
+                            
+                            null height 8
+                            image "gui/line.png":
+                                xpos 0
+                        
+                            null height 20
                             if renpy.game.preferences.fullscreen:
                                 hbox:
                                     label _("Window"):
                                         text_size 28
-                                    spacing 280
-                                    imagebutton idle "gui/button/radio_foreground.png" ypos 15 action Preference("display", "window")
+                                    spacing 320
+                                    imagebutton idle "gui/button/radio_foreground.png" ypos 0 action Preference("display", "window")
+                                null height 10
                                 hbox:
                                     label _("Fullscreen"):
                                         text_size 28
-                                    spacing 257
-                                    imagebutton idle "gui/button/radio_selected_foreground.png" ypos 15 action Preference("display", "fullscreen")
+                                    spacing 297
+                                    imagebutton idle "gui/button/radio_selected_foreground.png" ypos 0 action Preference("display", "fullscreen")
                             else:
                                 hbox:
                                     label _("Window"):
                                         text_size 28
-                                    spacing 280
-                                    imagebutton idle "gui/button/radio_selected_foreground.png" ypos 10 action Preference("display", "window")
+                                    spacing 320
+                                    imagebutton idle "gui/button/radio_selected_foreground.png" ypos 0 action Preference("display", "window")
+                                null height 10
                                 hbox:
                                     label _("Fullscreen"):
                                         text_size 28
-                                    spacing 257
-                                    imagebutton idle "gui/button/radio_foreground.png" ypos 10 action Preference("display", "fullscreen")
-                                    
+                                    spacing 297
+                                    imagebutton idle "gui/button/radio_foreground.png" ypos 0 action Preference("display", "fullscreen")
+                                
+                        null height 15
+                        
                         vbox:
                             vbox:
                                 xpos 0
                                 label _("Skip"):
                                     text_size 48
+                                
+                                null height 8
+                                image "gui/line.png":
+                                    xpos 0
+                        
+                                null height 20
                                 if renpy.game.preferences.skip_unseen:
                                     hbox:    
                                         label _("Unseen text"):
                                             text_size 28
-                                        spacing 241
-                                        imagebutton idle "gui/button/check_selected_foreground.png" ypos 10 action Preference("skip", "toggle")
+                                        spacing 281
+                                        imagebutton idle "gui/button/check_selected_foreground.png" ypos 3 action Preference("skip", "toggle")
                                 else:
                                     hbox:
                                         label _("Unseen text"):
                                             text_size 28
-                                        spacing 241
-                                        imagebutton idle "gui/button/check_foreground.png" ypos 10 action Preference("skip", "toggle")
+                                        spacing 281
+                                        imagebutton idle "gui/button/check_foreground.png" ypos 3 action Preference("skip", "toggle")
+                                null height 10
                                 if renpy.game.preferences.skip_after_choices:
                                     hbox:
                                         label _("After Choices"):
                                             text_size 28
-                                        spacing 223
-                                        imagebutton idle "gui/button/check_selected_foreground.png" ypos 10 action Preference("after choices", "toggle")
+                                        spacing 263
+                                        imagebutton idle "gui/button/check_selected_foreground.png" ypos 3 action Preference("after choices", "toggle")
                                 else:
                                      hbox:
                                         label _("After Choices"):
                                             text_size 28
-                                        spacing 223
-                                        imagebutton idle "gui/button/check_foreground.png" ypos 10 action Preference("after choices", "toggle")
+                                        spacing 263
+                                        imagebutton idle "gui/button/check_foreground.png" ypos 3 action Preference("after choices", "toggle")
                                 
 
 style pref_label is gui_label
@@ -829,16 +875,14 @@ style slider_button is gui_button
 style slider_button_text is gui_button_text
 style slider_pref_vbox is pref_vbox
 
-style pref_label:
-    top_margin gui.pref_spacing
-    bottom_margin 5
 
 style pref_label_text:
     yalign 1.0
+    xpos 30
 
 style pref_vbox:
     xsize 430
-    xpos 440
+    xpos 423
 
 #style radio_vbox:
     #spacing gui.pref_button_spacing
@@ -851,7 +895,7 @@ style radio_button_text:
     properties gui.button_text_properties("radio_button")
 
 style check_vbox:
-    spacing gui.pref_button_spacing
+    spacing gui.pref_button_spacing    
 
 style check_button:
     properties gui.button_properties("check_button")
@@ -862,6 +906,7 @@ style check_button_text:
 
 style slider_slider:
     xsize 430
+    xpos 30
 
 style slider_button:
     properties gui.button_properties("slider_button")
@@ -872,7 +917,7 @@ style slider_button_text:
 
 style slider_vbox:
     xsize 430
-    xpos 880
+    xpos 846
 
 ## History screen ##############################################################
 ##
@@ -1069,7 +1114,7 @@ style help_label_text:
     xsize 200
     color gui.hover_color
     xpos 880
-    #font gui.lato_regular
+    font gui.lato_regular
         
 style help_text:
     xpos 835
