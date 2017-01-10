@@ -227,14 +227,14 @@ define gui.choice_button_text_hover_color = "#ffffff"
 ## The save slot button.
 define gui.slot_button_width = 390
 define gui.slot_button_height = 280
-define gui.slot_button_borders = Borders(15, 15, 15, 15)
+define gui.slot_button_borders = Borders(0, 15, 0, 15)
 define gui.slot_button_text_size = 25
 define gui.slot_button_text_xalign = 0.5
 define gui.slot_button_text_idle_color = gui.idle_small_color
 
 ## The width and height of thumbnails used by the save slots.
 define config.thumbnail_width = 360
-define config.thumbnail_height = 195
+define config.thumbnail_height = 193
 
 ## The number of columns and rows in the grid of save slots.
 define gui.file_slot_cols = 1
@@ -393,72 +393,3 @@ define gui.nvl_thought_xalign = 0.0
 ## The position of nvl menu_buttons.
 define gui.nvl_button_xpos = 675
 define gui.nvl_button_xalign = 0.0
-
-
-
-################################################################################
-# Mobile devices
-################################################################################
-
-init python:
-
-    ## This increases the size of the quick buttons to make them easier to touch
-    ## on tablets and phones.
-    if renpy.variant("touch"):
-
-        gui.quick_button_borders = Borders(90, 21, 90, 0)
-
-    ## This changes the size and spacing of various GUI elements to ensure they
-    ## are easily visible on phones.
-    if renpy.variant("small"):
-
-        ## Font sizes.
-        gui.text_size = 45
-        gui.name_text_size = 54
-        gui.notify_text_size = 38
-        gui.interface_text_size = 54
-        gui.button_text_size = 51
-        gui.label_text_size = 54
-
-        ## Adjust the location of the textbox.
-        gui.textbox_height = 360
-        gui.name_xpos = 120
-        gui.text_xpos = 135
-        gui.text_width = 1650
-
-        ## Change the size and spacing of items in the game menu.
-        gui.choice_button_width = 1860
-
-        gui.navigation_spacing = 30
-        gui.pref_button_spacing = 15
-
-        gui.history_height = 285
-        gui.history_text_width = 1035
-
-        ## File button layout.
-        gui.file_slot_cols = 2
-        gui.file_slot_rows = 2
-
-        ## NVL-mode.
-        gui.nvl_height = 255
-
-        gui.nvl_name_width = 458
-        gui.nvl_name_xpos = 488
-
-        gui.nvl_text_width = 1373
-        gui.nvl_text_xpos = 518
-        gui.nvl_text_ypos = 8
-
-        gui.nvl_thought_width = 1860
-        gui.nvl_thought_xpos = 30
-
-        gui.nvl_button_width = 1860
-        gui.nvl_button_xpos = 30
-
-        ## Quick buttons.
-        gui.quick_button_text_size = 30
-        
-
-init -1 python hide:
-    
-    config.window_title = "Moonlight"
