@@ -22,6 +22,8 @@ init python:
 ##
 ## The colors of text in the interface.
 
+define gui.white_color = '#ffffff'
+
 ## An accent color used throughout the interface to label and highlight text.
 define gui.accent_color = '#6E6E6E'
 
@@ -191,10 +193,11 @@ define gui.confirm_button_text_xalign = 0.5
 
 define gui.page_button_borders = Borders(15, 6, 15, 6)
 
-define gui.quick_button_borders = Borders(15, 6, 15, 0)
+define gui.quick_button_borders = Borders(15, 6, 15, 1000)
 define gui.quick_button_text_size = 21
-define gui.quick_button_text_idle_color = gui.idle_small_color
-define gui.quick_button_text_selected_color = gui.accent_color
+define gui.quick_button_text_idle_color = gui.white_color
+define gui.quick_button_text_selected_color = gui.white_color
+
 
 ## You can also add your own customizations, by adding properly-named variables.
 ## For example, you can uncomment the following line to set the width of a

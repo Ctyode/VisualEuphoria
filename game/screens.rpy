@@ -121,8 +121,8 @@ screen say(who, what):
 
     # If there's a side image, display it above the text. Do not display
     # on the phone variant - there's no room.
-    if not renpy.variant("small"):
-        add SideImage() xalign 0.0 yalign 1.0
+    #if not renpy.variant("small"):
+    #    add SideImage() xalign 0.0 yalign 1.0
 
 
 style window is default
@@ -249,17 +249,17 @@ style choice_button_text is default:
 ## The quick menu is displayed in-game to provide easy access to the out-of-game
 ## menus.
 
-#screen quick_menu():
+screen quick_menu():
 
     # Ensure this appears on top of other screens.
-#    zorder 100
+    zorder 100
 
     # Add an in-game quick menu.
-#    hbox:
-#        style_prefix "quick"
+    hbox:
+        style_prefix "quick"
 
-#        xalign 0.5
-#        yalign 1.0
+        xalign 0.5
+        yalign 0.0
 
 #        textbutton _("Back") action Rollback()
 #        textbutton _("History") action ShowMenu('history')
@@ -273,18 +273,19 @@ style choice_button_text is default:
 
 ## This code ensures that the quick_menu screen is displayed in-game, whenever
 ## the player has not explicitly hidden the interface.
-#init python:
-#    config.overlay_screens.append("quick_menu")
+init python:
+    config.overlay_screens.append("quick_menu")
+    
 
+style quick_button is default
+style quick_button_text is button_text
 
-#style quick_button is default
-#style quick_button_text is button_text
-
-#style quick_button:
-#    properties gui.button_properties("quick_button")
-
-#style quick_button_text:
-#    properties gui.button_text_properties("quick_button")
+style quick_button:
+    properties gui.button_properties("quick_button")
+   
+style quick_button_text:
+    properties gui.button_text_properties("quick_button")
+    size 63
 
 
 ################################################################################
@@ -1329,16 +1330,10 @@ style nvl_button_text:
 ## Mobile Variants
 ################################################################################
 
-style pref_vbox:
-    variant "medium"
-    xsize 675
-
 ## Since a mouse may not be present, we replace the quick menu with a version
 ## that uses fewer and bigger buttons that are easier to touch.
 screen quick_menu():
     variant "touch"
-
-    zorder 100
 
     hbox:
         style_prefix "quick"
@@ -1364,29 +1359,6 @@ style main_menu_frame:
     background "gui/phone/overlay/main_menu.png"
 
 style game_menu_outer_frame:
-    variant "small"
     background "gui/phone/overlay/game_menu.png"
-
-style game_menu_navigation_frame:
-    variant "small"
-    xsize 510
-
-style game_menu_content_frame:
-    variant "small"
-    top_margin 0
-
-style pref_vbox:
-    variant "small"
-    xsize 600
-
-style slider_pref_vbox:
-    variant "small"
-    xsize None
-
-style slider_pref_slider:
-    variant "small"
-    xsize 900
-
-
 
 
